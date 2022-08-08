@@ -5,22 +5,24 @@ const SwaggerUi = require('swagger-ui-express');
 const express = require('express');
 const { buildHandlers } = require('./modules');
 const { handlers } = buildHandlers();
-const port = Number(process.env.PORT || 8089)
+const port = Number(process.env.PORT || 8089);
 
 const app = express();
 
-const whitelist = [
-  // TODO whitelist
-]
 
-app.use(cors({
-  origin: function (origin, callback) {
-    const allowed = whitelist.indexOf(origin) !== -1
-    if (allowed) return callback(null, true);
+const whitelist = [`http://localhost:${port}`];
 
-    callback(new Error('Not allowed by CORS'))
-  }
-}))
+app.use(
+  cors(function (req, callback) {
+    const corsOptions = {
+      origin: false,
+    };
+    const allowed = whitelist.indexOf(req.header('Origin')) !== -1;
+    if (allowed) corsOptions.origin = true;
+
+    callback(null, corsOptions);
+  })
+);
 
 const swaggerConfig = {
   appRoot: __dirname,
@@ -40,5 +42,5 @@ SwaggerExpress.create(swaggerConfig, onSwaggerCreated);
 
 module.exports = {
   app,
-  ...handlers
+  ...handlers,
 };
