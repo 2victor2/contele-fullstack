@@ -1,7 +1,7 @@
 'use strict'
 
 const knex = require('knex')({
-    client: 'mysql',
+    client: 'mysql2',
     connection: {
       host: process.env.WRITER_MYSQL_HOST,
       user: process.env.WRITER_MYSQL_USER,
@@ -10,9 +10,10 @@ const knex = require('knex')({
       database: 'main'
   },
   pool: {
-    min: 1,
+    min: 0,
     max: 4,
   },
+  debug: true
 });
 
 const getTransaction = async () => {
