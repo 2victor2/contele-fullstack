@@ -1,27 +1,24 @@
-'use strict'
+"use strict";
 
-const httpStatusCodes = require('http-status-codes');
+const { StatusCodes } = require("http-status-codes");
 const { httpErrorHandler } = require("../../common/handlers");
-const { createPostService } = require('../../services');
+const { createPostService } = require("../../services");
 
-const createPostHandler = async(req, res, next) => {
-    try{
-        const {
-            post_text,
-            author_id
-        } = req.body
+const createPostHandler = async (req, res, next) => {
+  try {
+    const { post_text, author_id } = req.body;
 
-        const created_post = await createPostService({
-            post_text,
-            author_id
-        })
+    const created_post = await createPostService({
+      post_text,
+      author_id,
+    });
 
-        return res.status(httpStatusCodes.OK).send(created_post);
-    }catch(error){
-        return httpErrorHandler({ req, res, error })
-    }
-}
+    return res.status(StatusCodes.CREATED).send(created_post);
+  } catch (error) {
+    return httpErrorHandler({ req, res, error });
+  }
+};
 
 module.exports = {
-    createPostHandler
-}
+  createPostHandler,
+};
