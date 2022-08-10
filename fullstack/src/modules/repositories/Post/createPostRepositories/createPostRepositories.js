@@ -18,6 +18,8 @@ const createPostRepositories = async ({ post } = {}) => {
       };
     }
 
+    await commitTransaction({ transaction });
+
     return {
       post_created,
     };
