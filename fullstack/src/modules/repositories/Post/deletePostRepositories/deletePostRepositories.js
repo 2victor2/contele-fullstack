@@ -4,7 +4,7 @@ const {
   rollbackTransaction,
 } = require("../../../common/handlers");
 
-const deletePostRepositories = async (post_id) => {
+const deletePostRepositories = async ({ post_id }) => {
   const { transaction } = await getTransaction();
 
   try {
