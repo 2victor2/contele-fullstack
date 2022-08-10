@@ -16,7 +16,7 @@ const listUserHandler = async (req, res, next) => {
     const users_response = !has_user_id && (await getAllUsersService());
 
     const users = [
-      (user_response ? user_response.user : []),
+      ...(user_response ? user_response.user : []),
       ...(users_response ? users_response.users : []),
     ];
 

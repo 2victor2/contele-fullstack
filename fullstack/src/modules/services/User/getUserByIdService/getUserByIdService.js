@@ -16,7 +16,7 @@ const getUserByIdService = async ({ user_id }) => {
   const has_single_user = Array.isArray(users) && users.length > 0;
 
   return {
-    user: users[0],
+    user: users,
     has_single_user,
   };
 };
