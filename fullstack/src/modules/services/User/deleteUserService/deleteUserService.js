@@ -5,7 +5,7 @@ const deleteUserService = async ({
 }) => {
 
     const {
-        users = []
+        users
     } = await getUserRepositories({
         user_id
     });
