@@ -14,7 +14,7 @@ const updateUserRepositories = async ({
 
     try {
 
-        await transaction('users').update({
+        await transaction('users').where({id: id}).update({
             user_email,
             user_password,
             full_name
