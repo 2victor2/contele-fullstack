@@ -1,6 +1,6 @@
 'use strict'
 
-const httpStatusCodes = require('http-status-codes');
+const { StatusCodes } = require('http-status-codes');
 const { httpErrorHandler } = require('../../common/handlers');
 const { 
     getPostByUserIdService 
@@ -18,7 +18,7 @@ const listPostHandler = async (req, res, next) => {
             user_id
         })
 
-        return res.status(httpStatusCodes.OK).send({posts});
+        return res.status(StatusCodes.OK).send({posts});
     }catch(error){
         return httpErrorHandler({ req, res, error })
     }
