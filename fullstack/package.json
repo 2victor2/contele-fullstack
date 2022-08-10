@@ -22,7 +22,7 @@
     "nodemon": "^2.0.16"
   },
   "scripts": {
-    "start": "node src/app.js"
+    "start": "nodemon src/app.js"
   },
   "author": "",
   "license": "ISC"
